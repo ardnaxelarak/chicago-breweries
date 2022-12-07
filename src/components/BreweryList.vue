@@ -1,5 +1,6 @@
 <script lang="ts">
 import { defineComponent } from 'vue'
+import axios from 'axios'
 import { Brewery } from '../types'
 import BreweryListItem from './BreweryListItem.vue'
 
@@ -9,19 +10,24 @@ export default defineComponent({
   },
   data() {
     return {
-      breweries: [
-        {
-          name: "MadTree Brewing",
-          type: "regional",
-          street: "3301 Madison Rd",
-          address_2: null,
-          address_3: null,
-          city: "Cincinnati",
-          state: "Ohio",
-          postal_code: "45209-1132",
-          website_url: "http://www.madtreebrewing.com",
-        } as Brewery
-      ],
+      breweries: [] as Brewery[],
+    }
+  },
+  async mounted() {
+    var finished = false
+    var page = 1
+    while (!finished) {
+      const response =
+          await axios.get(
+              'https://api.openbrewerydb.org/breweries',
+              { params: { by_city: 'chicago', page: page }})
+      const list = response.data
+      if (list.length > 0) {
+        this.breweries = this.breweries.concat(list)
+      } else {
+        finished = true
+      }
+      page++
     }
   },
 })

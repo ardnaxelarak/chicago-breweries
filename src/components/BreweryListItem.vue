@@ -16,7 +16,7 @@ export default defineComponent({
 <template>
   <div>
     <h2>{{ brewery.name }}</h2>
-    <h4>{{ brewery.type }}</h4>
+    <h4>{{ brewery.brewery_type }}</h4>
     <p>{{ brewery.street }}</p>
     <p v-if="brewery.address_2">{{ brewery.address_2 }}</p>
     <p v-if="brewery.address_3">{{ brewery.address_3 }}</p>
