@@ -34,7 +34,5 @@ export default defineComponent({
 </script>
 
 <template>
-  <div v-for="brewery in breweries">
-    <BreweryListItem :brewery="brewery" />
-  </div>
+  <BreweryListItem v-for="brewery in breweries" :brewery="brewery" />
 </template>
