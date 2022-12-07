@@ -1,5 +1,6 @@
 <script lang="ts">
 import { defineComponent } from 'vue'
+import { Brewery } from '../types'
 import BreweryListItem from './BreweryListItem.vue'
 
 export default defineComponent({
@@ -19,7 +20,7 @@ export default defineComponent({
           state: "Ohio",
           postal_code: "45209-1132",
           website_url: "http://www.madtreebrewing.com",
-        }
+        } as Brewery
       ],
     }
   },
