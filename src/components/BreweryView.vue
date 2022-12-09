@@ -43,7 +43,7 @@ export default defineComponent({
       <GMapMap
           :center="center"
           :zoom="17"
-          style="width: 35em; height: 35em;"
+          class="brewery-gmap"
       >
         <GMapMarker :position="center" />
       </GMapMap>
@@ -54,10 +54,17 @@ export default defineComponent({
   </div>
 </template>
 
-<style scoped>
+<style scoped lang="scss">
+$maxCardWidth: 40em;
+$cardMargin: 1em;
+$mapMargin: 1.5em;
+
+$cardWidth: calc(min(100vw - 2 * $cardMargin, $maxCardWidth));
+$mapSize: calc($cardWidth - 2 * $mapMargin);
+
 .brewery-view-card {
-  width: 40em;
-  margin: 1em auto;
+  width: $cardWidth;
+  margin: $cardMargin auto;
   padding: 1em;
 }
 .brewery-name {
@@ -70,6 +77,10 @@ export default defineComponent({
 }
 .brewery-map {
   margin: 0.5em auto;
+}
+.brewery-gmap {
+  width: $mapSize;
+  height: $mapSize;
 }
 .brewery-url {
   text-align: center;

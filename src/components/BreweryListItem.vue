@@ -39,10 +39,14 @@ export default defineComponent({
   </div>
 </template>
 
-<style scoped>
+<style scoped lang="scss">
+$maxCardWidth: 30em;
+$cardMargin: 1em;
+$cardWidth: calc(min(100vw - 2 * $cardMargin, $maxCardWidth));
+
 .brewery-list-card {
-  width: 30em;
-  margin: 1em auto;
+  width: $cardWidth;
+  margin: $cardMargin auto;
 }
 .brewery-list-card:hover {
   background: #CCC;
