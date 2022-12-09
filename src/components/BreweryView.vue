@@ -4,17 +4,25 @@ import { Brewery } from '../types'
 import type { PropType } from 'vue'
 
 export default defineComponent({
-  emits: ['brewery-select'],
+  emits: ['brewery-deselect'],
   props: {
     brewery: {
       type: Object as PropType<Brewery>,
       required: true,
     },
   },
+  computed: {
+    center() {
+      return {
+        lat: parseFloat(this.brewery.latitude),
+        lng: parseFloat(this.brewery.longitude),
+      }
+    },
+  },
   methods: {
     deselect() {
       this.$emit('brewery-deselect')
-    }
+    },
   },
 })
 </script>
@@ -31,8 +39,14 @@ export default defineComponent({
       <span v-if="brewery.address_3">{{ brewery.address_3 }}<br></span>
       <span>{{ brewery.city }}, {{ brewery.state }} {{ brewery.postal_code }}</span>
     </div>
-    <div class="brewery-map">
-      Map widget go here
+    <div v-if="brewery.latitude && brewery.longitude" class="brewery-map">
+      <GMapMap
+          :center="center"
+          :zoom="17"
+          style="width: 35em; height: 35em;"
+      >
+        <GMapMarker :position="center" />
+      </GMapMap>
     </div>
     <div v-if="brewery.website_url" class="brewery-url">
       <a :href="brewery.website_url">{{ brewery.website_url }}</a>
@@ -42,7 +56,7 @@ export default defineComponent({
 
 <style scoped>
 .brewery-view-card {
-  width: 30em;
+  width: 40em;
   margin: 1em auto;
   padding: 1em;
 }
