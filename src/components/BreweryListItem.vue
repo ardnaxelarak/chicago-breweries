@@ -32,7 +32,7 @@ export default defineComponent({
           <span>{{ brewery.city }}, {{ brewery.state }} {{ brewery.postal_code }}</span>
         </div>
         <div v-if="brewery.website_url" class="brewery-url">
-          <a :href="brewery.website_url">{{ brewery.website_url }}</a>
+          <a :href="brewery.website_url" target="_blank">{{ brewery.website_url }}</a>
         </div>
       </div>
     </div>
