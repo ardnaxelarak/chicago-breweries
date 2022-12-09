@@ -26,9 +26,6 @@ export default defineComponent({
 </script>
 
 <template>
-  <div v-if="this.brewery">
-    <button type="button" class="btn btn-primary" @click="deselect">Back</button>
-    <BreweryView :brewery="brewery" />
-  </div>
+  <BreweryView v-if="brewery" :brewery="brewery" @brewery-deselect="deselect"/>
   <BreweryList v-else @brewery-select="select" />
 </template>
