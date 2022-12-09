@@ -26,6 +26,14 @@ export default defineComponent({
 </script>
 
 <template>
+  <h1 class="header">Chicago Breweries</h1>
   <BreweryView v-if="brewery" :brewery="brewery" @brewery-deselect="deselect"/>
   <BreweryList v-else @brewery-select="select" />
+  <p class="attribution">Powered by OpenBreweryDB</p>
 </template>
+
+<style>
+.attribution, .header {
+  text-align: center;
+}
+</style>

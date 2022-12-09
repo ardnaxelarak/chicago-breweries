@@ -5,9 +5,3 @@ import BreweryPage from './components/BreweryPage.vue'
 <template>
   <BreweryPage />
 </template>
-
-<style scoped>
-body {
-  color: #F7CB5C;
-}
-</style>
