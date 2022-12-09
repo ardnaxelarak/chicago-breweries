@@ -8,12 +8,13 @@ export default defineComponent({
   components: {
     BreweryListItem,
   },
+  emits: ['brewery-select'],
   data() {
     return {
       breweries: [] as Brewery[],
     }
   },
-  async mounted() {
+  async created() {
     var finished = false
     var page = 1
     while (!finished) {
@@ -30,9 +31,14 @@ export default defineComponent({
       page++
     }
   },
+  methods: {
+    select(brewery: Brewery) {
+      this.$emit('brewery-select', brewery)
+    }
+  },
 })
 </script>
 
 <template>
-  <BreweryListItem v-for="brewery in breweries" :brewery="brewery" />
+  <BreweryListItem v-for="brewery in breweries" :brewery="brewery" @brewery-select="select" />
 </template>

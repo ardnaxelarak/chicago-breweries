@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import BreweryList from './components/BreweryList.vue'
+import BreweryPage from './components/BreweryPage.vue'
 </script>
 
 <template>
-  <BreweryList />
+  <BreweryPage />
 </template>
 
 <style scoped>

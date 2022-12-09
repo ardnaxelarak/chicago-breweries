@@ -4,17 +4,23 @@ import { Brewery } from '../types'
 import type { PropType } from 'vue'
 
 export default defineComponent({
+  emits: ['brewery-select'],
   props: {
     brewery: {
       type: Object as PropType<Brewery>,
       required: true,
     },
   },
+  methods: {
+    select() {
+      this.$emit('brewery-select', this.brewery)
+    }
+  },
 })
 </script>
 
 <template>
-  <div class="card brewery-list-card">
+  <div class="card brewery-list-card" @click="select">
     <div class="brewery-list-item">
       <span class="badge bg-secondary brewery-badge">{{ brewery.brewery_type }}</span>
       <div class=brewery-details>
@@ -33,7 +39,7 @@ export default defineComponent({
   </div>
 </template>
 
-<style>
+<style scoped>
 .brewery-list-card {
   width: 30em;
   margin: 1em auto;
